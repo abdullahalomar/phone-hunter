@@ -1,7 +1,7 @@
 const loadPhone = () => {
     const phoneSearchField = document.getElementById('search-field');
     const searchText = phoneSearchField.value;
-    console.log(searchText);
+    // console.log(searchText);
     // clear data
     phoneSearchField.value = '';
 
@@ -25,11 +25,11 @@ const loadPhone = () => {
             // code.....
         }
         phones.forEach( data => {
-            console.log(data);
+            // console.log(data);
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-              <div class="card h-100"">
+              <div onclick="loadPhoneDetails(${data.iddata})" class="card h-100"">
               <img src="${data.image}" class="card-img-top" alt=" ">
               <div class="card-body">
               <h4 class="card-title">${data.brand}</h4>
@@ -42,29 +42,33 @@ const loadPhone = () => {
     }
 
     // details data
-    const loadDetails = id => {
+    const loadPhoneDetails = id => {
         const url = `https://openapi.programming-hero.com/api/phone/${id}`;
         fetch(url)
         .then(response => response.json())
-        .then(json => displayMealDetail(json.data[0]))
+        .then(json => displayDetail(json.data))
     
     }
     
-    const displayMealDetail = data => {
+    const displayDetail = data => {
         console.log(data);
-    //     const mealDetails = document.getElementById('meal-details');
-    //     mealDetails.textContent = '';
-    //     const div = document.createElement('div');
-    //     div.classList.add('card');
-    //     div.innerHTML = `
-    //     <img src="${data.image}" class="card-img-top" alt="...">
-    //     <div class="card-body">
-    //     <h5 class="card-title">${data.brand}</h5>
-    //     <p class="card-text">${data.strInstructions.slice(0, 150)}</p>
-    //     <a href="${data.strYoutube}" class="btn btn-primary">Go somewhere</a>
-    //     </div>
-    //     `;
-    //     mealDetails.appendChild(div);
+        const phoneDetails = document.getElementById('phone-details');
+        phoneDetails.textContent = '';
+        const div = document.createElement('div');
+        // div.classList.add('card');
+        div.innerHTML = `
+        <div class="col-md-4">
+        <img src="${data.image}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">${data.brand}</h5>
+          <p class="card-text">${data}</p>
+          <p class="card-text"><small class="text-muted">${data}</small></p>
+        </div>
+        </div>
+         `;
+         phoneDetails.appendChild(div);
     }
 
  
