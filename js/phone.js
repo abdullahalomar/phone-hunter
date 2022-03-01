@@ -1,7 +1,6 @@
 const loadPhone = () => {
     const phoneSearchField = document.getElementById('search-field');
     const searchText = phoneSearchField.value;
-    // console.log(searchText);
     // clear data
     phoneSearchField.value = '';
 
@@ -51,10 +50,11 @@ const loadPhone = () => {
     }
     
     const displayDetail = data => {
-        console.log(data);
+        // console.log(data);
         const phoneDetails = document.getElementById('phone-details');
         phoneDetails.textContent = '';
-        const div = document.createElement('div');
+        
+           const div = document.createElement('div');
         // div.classList.add('card');
         div.innerHTML = `
         <div class="col-md-4">
@@ -69,6 +69,7 @@ const loadPhone = () => {
         </div>
          `;
          phoneDetails.appendChild(div);
+        
     }
 
  
