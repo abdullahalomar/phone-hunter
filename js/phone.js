@@ -6,7 +6,7 @@ const loadPhone = () => {
 
     // load data
     if (searchText == '') {
-        //code....
+                     
     } else {
         
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -19,6 +19,7 @@ const loadPhone = () => {
 //    Show result on display 
     const displaySearchResult = phones => {
         const searchResult = document.getElementById('search-result');
+       
         searchResult.textContent = '';
         if (phones.length == 0) {
             // code.....
@@ -50,13 +51,14 @@ const loadPhone = () => {
     }
     
     const displayDetail = data => {console.log(data);
+        window.scroll({top: 0, left: 0, behavior: 'smooth'});
         const phoneDetails = document.getElementById('phone-details');
         phoneDetails.textContent = '';
         
            const div = document.createElement('div');
            let release = '';
            if(data.releaseDate == ''){
-               released =  'No release date found';
+               released =  '<h6 class="text-danger">No release date found</h6>';
            }
            else{
                 released =  data.releaseDate;
@@ -69,7 +71,7 @@ const loadPhone = () => {
         <div class="col-md-8">
         <div class="card-body">
           <h4 class="card-title">${data.name}</h4>
-          <p class="card-text"><small class="text-muted">${released}</small></p>
+          <p class="card-text"><h6 class="text-success">${released}</h6></p>
           <h5 class="card-title">${data.brand}</h5>
           <div class="col table-responsive">
           <table class="table table-striped my-5">
