@@ -28,11 +28,12 @@ const loadPhone = () => {
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-              <div onclick="loadPhoneDetails('${data.slug}')" class="card h-100"">
+              <div class="card h-100"">
               <img src="${data.image}" class="card-img-top" alt=" ">
               <div class="card-body">
               <h4 class="card-title">${data.brand}</h4>
               <h6 class="card-text">${data.phone_name}</h6>
+              <button onClick="loadPhoneDetails('${data.slug}')" type="button" class="btn btn-outline-primary">Details</button>
               </div>
               </div>
             `;
@@ -67,7 +68,7 @@ const loadPhone = () => {
         </div>
         <div class="col-md-8">
         <div class="card-body">
-          <h4 class="card-title">${data.phone_name}</h4>
+          <h4 class="card-title">${data.name}</h4>
           <p class="card-text"><small class="text-muted">${released}</small></p>
           <h5 class="card-title">${data.brand}</h5>
           <div class="col table-responsive">
