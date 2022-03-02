@@ -1,3 +1,26 @@
+// search result error handleing
+document.getElementById('button-search').addEventListener('click', () =>{
+    reseterrormessage();
+    const search = document.getElementById('search-field').value;
+    if (search === '') { 
+        errormessage('kjhbadkasbdaisgbik');
+        return false;
+    };
+    searchPhones(search.toLowerCase());
+})
+
+const errormessage = (massage) => {
+   const alert =  document.getElementById('alart');
+   alert.style.display='block';
+   alert.innerText = massage;
+}
+const reseterrormessage = () => {
+   const alert =  document.getElementById('alart');
+   alert.style.display='none';
+   alert.innerText = '';
+}
+
+// load phones 
 const loadPhone = () => {
     const phoneSearchField = document.getElementById('search-field');
     const searchText = phoneSearchField.value;
@@ -22,26 +45,30 @@ const loadPhone = () => {
        
         searchResult.textContent = '';
         if (phones.length == 0) {
-            // code.....
+            errormessage('kjhbadkasbdaisgbik');
+            return false;
         }
-        phones.forEach( data => {
-            // console.log(data);
-            const div = document.createElement('div');
-            div.classList.add('col');
-            div.innerHTML = `
-              <div class="card h-100"">
-              <img src="${data.image}" class="card-img-top" alt=" ">
-              <div class="card-body">
-              <h4 class="card-title">${data.brand}</h4>
-              <h6 class="card-text">${data.phone_name}</h6>
-              <button onClick="loadPhoneDetails('${data.slug}')" type="button" class="btn btn-outline-primary">Details</button>
-              </div>
-              </div>
-            `;
-            searchResult.appendChild(div);
-        })
+        else{
+            phones.forEach( data => {
+                // console.log(data);
+                const div = document.createElement('div');
+                div.classList.add('col');
+                div.innerHTML = `
+                  <div class="card h-100"">
+                  <img src="${data.image}" class="card-img-top" alt=" ">
+                  <div class="card-body">
+                  <h4 class="card-title">${data.brand}</h4>
+                  <h6 class="card-text">${data.phone_name}</h6>
+                  <button onClick="loadPhoneDetails('${data.slug}')" type="button" class="btn btn-outline-primary">Details</button>
+                  </div>
+                  </div>
+                `;
+                searchResult.appendChild(div);
+            })
+            reseterrormessage();
+        }
     }
-
+   
     // phone details
     const loadPhoneDetails = id => {
         const url = `https://openapi.programming-hero.com/api/phone/${id}`;
@@ -49,7 +76,6 @@ const loadPhone = () => {
         .then(response => response.json())
         .then(json => displayDetail(json.data))
     }
-    
     const displayDetail = data => {console.log(data);
         window.scroll({top: 0, left: 0, behavior: 'smooth'});
         const phoneDetails = document.getElementById('phone-details');
@@ -120,7 +146,6 @@ const loadPhone = () => {
         </div>
          `;
          phoneDetails.appendChild(div);
-        
     }
 
  
