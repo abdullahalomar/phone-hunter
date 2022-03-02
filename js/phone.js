@@ -3,7 +3,7 @@ document.getElementById('button-search').addEventListener('click', () =>{
     reseterrormessage();
     const search = document.getElementById('search-field').value;
     if (search === '') { 
-        errormessage('kjhbadkasbdaisgbik');
+        errormessage('Nothing Enter Valid Text !');
         return false;
     };
     searchPhones(search.toLowerCase());
@@ -45,7 +45,7 @@ const loadPhone = () => {
        
         searchResult.textContent = '';
         if (phones.length == 0) {
-            errormessage('kjhbadkasbdaisgbik');
+            errormessage('Nothing Enter Valid Text !');
             return false;
         }
         else{
